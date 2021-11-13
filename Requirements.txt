@@ -1,0 +1,4 @@
+json 2.0.9
+tensorflow 2.7.0
+transformers 4.12.3
+gdown 3.6.4
