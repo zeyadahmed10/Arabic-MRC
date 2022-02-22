@@ -1,3 +1,3 @@
-train,https://drive.google.com/uc?id=1V5ziIZe__pGg14nH42WyMEFz444XPWf7 
-validation,https://drive.google.com/uc?id=19nj9jiCdJlHwAfgUTJ_Z8jg1cB34yfjv 
-test,https://drive.google.com/uc?id=1z0XksuTwnqhiX1guxkmjYmoNA_JZ6SUN 
+train,https://drive.google.com/uc?id=1V5ziIZe__pGg14nH42WyMEFz444XPWf7
+validation,https://drive.google.com/uc?id=19nj9jiCdJlHwAfgUTJ_Z8jg1cB34yfjv
+test,https://drive.google.com/uc?id=1z0XksuTwnqhiX1guxkmjYmoNA_JZ6SUN
