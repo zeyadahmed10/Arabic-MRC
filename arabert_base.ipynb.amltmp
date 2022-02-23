@@ -65,7 +65,7 @@
           "output_type": "execute_result",
           "execution_count": 1,
           "data": {
-            "text/plain": "<torch._C.Generator at 0x7f2a4823d150>"
+            "text/plain": "<torch._C.Generator at 0x7f5f2933c0b0>"
           },
           "metadata": {}
         }
@@ -78,7 +78,7 @@
         },
         "outputId": "db113851-c93a-4a3d-b1a5-0d7c0b3ff61f",
         "gather": {
-          "logged": 1645551808204
+          "logged": 1645558637674
         }
       }
     },
@@ -193,7 +193,7 @@
       "metadata": {
         "id": "TO4PKnxETihu",
         "gather": {
-          "logged": 1645551821405
+          "logged": 1645558642940
         }
       }
     },
@@ -220,7 +220,7 @@
           }
         },
         "gather": {
-          "logged": 1645551827169
+          "logged": 1645558643690
         }
       }
     },
@@ -264,7 +264,7 @@
       "metadata": {
         "id": "_L_EeDReM-57",
         "gather": {
-          "logged": 1645551829997
+          "logged": 1645558644388
         }
       }
     },
@@ -282,7 +282,7 @@
       "metadata": {
         "id": "Jabv_uE2TdHj",
         "gather": {
-          "logged": 1645551849189
+          "logged": 1645558659577
         }
       }
     },
@@ -311,7 +311,7 @@
         "id": "FS7kUgcJZ34r",
         "outputId": "57226f1f-17ac-481b-bb28-f285b451af3f",
         "gather": {
-          "logged": 1645551896210
+          "logged": 1645558659723
         }
       }
     },
@@ -328,77 +328,66 @@
     {
       "cell_type": "code",
       "source": [
+        "\r\n",
+        "#model_name = \"aubmindlab/bert-base-arabertv02\"\r\n",
+        "#arabert_tokenizer = AutoTokenizer.from_pretrained(model_name,do_lower_case=False)\r\n",
+        "#model = AutoModel.from_pretrained(model_name)"
+      ],
+      "outputs": [],
+      "execution_count": 7,
+      "metadata": {
+        "jupyter": {
+          "source_hidden": false,
+          "outputs_hidden": false
+        },
+        "nteract": {
+          "transient": {
+            "deleting": false
+          }
+        },
+        "gather": {
+          "logged": 1645558660103
+        }
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#arabert_tokenizer.save_pretrained('CachedPretrained/bert-base-arabertv02')\r\n",
+        "#model.save_pretrained('CachedPretrained/bert-base-arabertv02')"
+      ],
+      "outputs": [],
+      "execution_count": 8,
+      "metadata": {
+        "jupyter": {
+          "source_hidden": false,
+          "outputs_hidden": false
+        },
+        "nteract": {
+          "transient": {
+            "deleting": false
+          }
+        },
+        "gather": {
+          "logged": 1645558661407
+        }
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
         "#Creating the tokenizer\n",
-        "model_name = \"aubmindlab/bert-base-arabertv02\"\n",
-        "arabert_tokenizer = AutoTokenizer.from_pretrained(model_name,do_lower_case=False)\n",
+        "model_name = \"CachedPretrained/bert-base-arabertv02\"\n",
+        "if not os.path.exists(model_name):\n",
+        "    model_name = model_name = \"aubmindlab/bert-base-arabertv02\"\n",
         "\n",
+        "arabert_tokenizer = AutoTokenizer.from_pretrained(model_name,do_lower_case=False)\n",
         "train_encodings = arabert_tokenizer(train_questions, train_contexts, truncation=True, padding=True, return_tensors=\"pt\")\n",
         "val_encodings = arabert_tokenizer(val_questions, val_contexts, truncation=True, padding=True, return_tensors=\"pt\")\n",
         "test_encodings = arabert_tokenizer(test_questions, test_contexts,truncation= True, padding= True, return_tensors=\"pt\")\n"
       ],
-      "outputs": [
-        {
-          "output_type": "display_data",
-          "data": {
-            "application/vnd.jupyter.widget-view+json": {
-              "model_id": "603f710dc592461298f28c5fa41f5766",
-              "version_minor": 0,
-              "version_major": 2
-            },
-            "text/plain": "Downloading:   0%|          | 0.00/381 [00:00<?, ?B/s]"
-          },
-          "metadata": {}
-        },
-        {
-          "output_type": "display_data",
-          "data": {
-            "application/vnd.jupyter.widget-view+json": {
-              "model_id": "8608f95e643747b4b97e0d92dd17fe45",
-              "version_minor": 0,
-              "version_major": 2
-            },
-            "text/plain": "Downloading:   0%|          | 0.00/384 [00:00<?, ?B/s]"
-          },
-          "metadata": {}
-        },
-        {
-          "output_type": "display_data",
-          "data": {
-            "application/vnd.jupyter.widget-view+json": {
-              "model_id": "f9a30badd40542c99f1411148be06ccb",
-              "version_minor": 0,
-              "version_major": 2
-            },
-            "text/plain": "Downloading:   0%|          | 0.00/805k [00:00<?, ?B/s]"
-          },
-          "metadata": {}
-        },
-        {
-          "output_type": "display_data",
-          "data": {
-            "application/vnd.jupyter.widget-view+json": {
-              "model_id": "789840cfaf484b4d80248c1054785bbb",
-              "version_minor": 0,
-              "version_major": 2
-            },
-            "text/plain": "Downloading:   0%|          | 0.00/2.52M [00:00<?, ?B/s]"
-          },
-          "metadata": {}
-        },
-        {
-          "output_type": "display_data",
-          "data": {
-            "application/vnd.jupyter.widget-view+json": {
-              "model_id": "0df66fd593914fb681181db120c0edfe",
-              "version_minor": 0,
-              "version_major": 2
-            },
-            "text/plain": "Downloading:   0%|          | 0.00/112 [00:00<?, ?B/s]"
-          },
-          "metadata": {}
-        }
-      ],
-      "execution_count": null,
+      "outputs": [],
+      "execution_count": 9,
       "metadata": {
         "id": "DOqWFALlen2W",
         "colab": {
@@ -462,7 +451,10 @@
             "6a58e3344cbd4ae3ab3315b765511c7a"
           ]
         },
-        "outputId": "fc6aed67-2dee-439a-c08f-f0d4c622851b"
+        "outputId": "fc6aed67-2dee-439a-c08f-f0d4c622851b",
+        "gather": {
+          "logged": 1645558669494
+        }
       }
     },
     {
@@ -485,18 +477,21 @@
           "output_type": "execute_result",
           "execution_count": 11,
           "data": {
-            "text/plain": "{'answer_end': 227, 'answer_start': 211, 'text': 'تصل المسافة التي'}"
+            "text/plain": "{'text': 'تصل المسافة التي', 'answer_start': 213, 'answer_end': 229}"
           },
           "metadata": {}
         }
       ],
-      "execution_count": null,
+      "execution_count": 11,
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/"
         },
         "id": "dvUOq53AlZSL",
-        "outputId": "d1b15c9c-79cb-40a1-86e5-3efa62a5055a"
+        "outputId": "d1b15c9c-79cb-40a1-86e5-3efa62a5055a",
+        "gather": {
+          "logged": 1645552589149
+        }
       }
     },
     {
@@ -509,22 +504,22 @@
           "output_type": "execute_result",
           "execution_count": 12,
           "data": {
-            "application/vnd.google.colaboratory.intrinsic+json": {
-              "type": "string"
-            },
-            "text/plain": "'هجرة الطيور هي رحلة موسمية تقوم بها أسراب من الطيور قاطعين مسافات هائلة عبر الصحاري وقمم الجبال العالية والمحيطات. تصل هذه الطيور إلى هدفها في وقت واحد يتطابق مع الوقت التي وصلت فيه في العام السابق. بعض الأنواع تصل المسافة التي تقطعها في هجرتها إلى 50 الف كيلومتر في السنة، البعض الآخر تستمر بالطيران بدون انقطاع لمدة تصل إلى 100 ساعة مع منظومة تحديد دقيقة للاتجاهات عند تلك الطيور. بعض الأنواع لها القدرة على الطيران لمسافات طويلة، ليلا ونهارا، دون توقف. هذه القدرة هامة للغاية للتمكن من عبور الصحاري الكبرى الممتدة لالاف الكيلومترات بدون طعام أو ماء. قبل بدء رحلتهم لعبور الصحراء تقوم الطيور بأكل طعام غني بالدهون مثل حبوب الذرة.\\n'"
+            "text/plain": "'هجرة الطيور هي رحلة موسمية تقوم بها أسراب من الطيور قاطعين مسافات هائلة عبر الصحاري وقمم الجبال العالية والمحيطات . تصل هذه الطيور إلى هدفها في وقت واحد يتطابق مع الوقت التي وصلت فيه في العام السابق . بعض الأنواع تصل المسافة التي تقطعها في هجرتها إلى 50 الف كيلومتر في السنة ، البعض الآخر تستمر بالطيران بدون انقطاع لمدة تصل إلى 100 ساعة مع منظومة تحديد دقيقة للاتجاهات عند تلك الطيور . بعض الأنواع لها القدرة على الطيران لمسافات طويلة ، ليلا ونهارا ، دون توقف . هذه القدرة هامة للغاية للتمكن من عبور الصحاري الكبرى الممتدة لالاف الكيلومترات بدون طعام أو ماء . قبل بدء رحلتهم لعبور الصحراء تقوم الطيور بأكل طعام غني بالدهون مثل حبوب الذرة .'"
           },
           "metadata": {}
         }
       ],
-      "execution_count": null,
+      "execution_count": 12,
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/",
           "height": 88
         },
         "id": "G-pky3qoouNj",
-        "outputId": "cf2062b8-f30b-41a1-c26c-b483bf585e71"
+        "outputId": "cf2062b8-f30b-41a1-c26c-b483bf585e71",
+        "gather": {
+          "logged": 1645552593404
+        }
       }
     },
     {
@@ -542,13 +537,16 @@
           "metadata": {}
         }
       ],
-      "execution_count": null,
+      "execution_count": 13,
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/"
         },
         "id": "90_A5aFHIU7G",
-        "outputId": "1efcd681-42a6-4efc-b866-1e5ef16c4cf8"
+        "outputId": "1efcd681-42a6-4efc-b866-1e5ef16c4cf8",
+        "gather": {
+          "logged": 1645552604538
+        }
       }
     },
     {
@@ -573,9 +571,12 @@
         "  encodings['end_positions'] = encodings['end_positions'].view(len(answers), 1)"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 10,
       "metadata": {
-        "id": "-ze0nuQLgZqb"
+        "id": "-ze0nuQLgZqb",
+        "gather": {
+          "logged": 1645558675203
+        }
       }
     },
     {
@@ -587,9 +588,12 @@
         "#index_to_token_position(model_encodings, train_answers[:2])"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 11,
       "metadata": {
-        "id": "Li1QBYPxkbpR"
+        "id": "Li1QBYPxkbpR",
+        "gather": {
+          "logged": 1645558676344
+        }
       }
     },
     {
@@ -603,9 +607,12 @@
         "  encodings.update({'weights':weights})"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 12,
       "metadata": {
-        "id": "a7hmNksf7MuI"
+        "id": "a7hmNksf7MuI",
+        "gather": {
+          "logged": 1645558677854
+        }
       }
     },
     {
@@ -617,9 +624,12 @@
         "#add_weights_tensor(model_encodings,train_plausible[:2])"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 13,
       "metadata": {
-        "id": "dz4p1B1-7s15"
+        "id": "dz4p1B1-7s15",
+        "gather": {
+          "logged": 1645558678987
+        }
       }
     },
     {
@@ -643,13 +653,16 @@
           "text": "20\n0\n3\n"
         }
       ],
-      "execution_count": null,
+      "execution_count": 14,
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/"
         },
         "id": "wl_UxGd5H47X",
-        "outputId": "4e79a9f4-b880-494c-e6b9-e324efe750db"
+        "outputId": "4e79a9f4-b880-494c-e6b9-e324efe750db",
+        "gather": {
+          "logged": 1645558680375
+        }
       }
     },
     {
@@ -662,18 +675,21 @@
           "output_type": "execute_result",
           "execution_count": 19,
           "data": {
-            "text/plain": "torch.Size([3243, 1])"
+            "text/plain": "torch.Size([3261, 1])"
           },
           "metadata": {}
         }
       ],
-      "execution_count": null,
+      "execution_count": 19,
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/"
         },
         "id": "ihnAVF5JzlTW",
-        "outputId": "73629eed-13dc-4b83-de5d-78f419d56a7b"
+        "outputId": "73629eed-13dc-4b83-de5d-78f419d56a7b",
+        "gather": {
+          "logged": 1645552979291
+        }
       }
     },
     {
@@ -707,9 +723,12 @@
         "from tqdm import tqdm"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 15,
       "metadata": {
-        "id": "cS9ATVPBUU_x"
+        "id": "cS9ATVPBUU_x",
+        "gather": {
+          "logged": 1645558685142
+        }
       }
     },
     {
@@ -729,22 +748,28 @@
         "#model_dataset = AqadDataset(model_encodings)"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 16,
       "metadata": {
-        "id": "-u2KCWejXhOa"
+        "id": "-u2KCWejXhOa",
+        "gather": {
+          "logged": 1645558686157
+        }
       }
     },
     {
       "cell_type": "code",
       "source": [
-        "train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True)\n",
-        "val_loader = DataLoader(val_dataset, batch_size = 8, shuffle= True)\n",
+        "train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)\n",
+        "val_loader = DataLoader(val_dataset, batch_size = 4, shuffle= True)\n",
         "#model_loader = DataLoader(model_dataset, batch_size = 2, shuffle= True)"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 47,
       "metadata": {
-        "id": "IMH9XNyKa20T"
+        "id": "IMH9XNyKa20T",
+        "gather": {
+          "logged": 1645559623794
+        }
       }
     },
     {
@@ -759,13 +784,16 @@
           "text": "8 8\n"
         }
       ],
-      "execution_count": null,
+      "execution_count": 18,
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/"
         },
         "id": "m-JI4JCFMLlQ",
-        "outputId": "88c2ff54-4563-4a7a-9600-b885734fbb87"
+        "outputId": "88c2ff54-4563-4a7a-9600-b885734fbb87",
+        "gather": {
+          "logged": 1645558688686
+        }
       }
     },
     {
@@ -786,9 +814,12 @@
         "  return 0"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 19,
       "metadata": {
-        "id": "2IPIUZPQCEak"
+        "id": "2IPIUZPQCEak",
+        "gather": {
+          "logged": 1645558692080
+        }
       }
     },
     {
@@ -807,9 +838,12 @@
         "    return f1"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 20,
       "metadata": {
-        "id": "J-i9-oqlGNIT"
+        "id": "J-i9-oqlGNIT",
+        "gather": {
+          "logged": 1645558692479
+        }
       }
     },
     {
@@ -842,9 +876,12 @@
         "        shutil.copyfile(f_path, best_fpath)"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 21,
       "metadata": {
-        "id": "fBOiEAxZc5uF"
+        "id": "fBOiEAxZc5uF",
+        "gather": {
+          "logged": 1645558694555
+        }
       }
     },
     {
@@ -863,14 +900,17 @@
         "    # initialize optimizer from checkpoint to optimizer\n",
         "    optimizer.load_state_dict(checkpoint['optimizer'])\n",
         "    # initialize valid_loss_min from checkpoint to valid_loss_min\n",
-        "    valid_loss_min = checkpoint['valid_loss_min']\n",
+        "    valid_loss_min = checkpoint['val_loss']\n",
         "    # return model, optimizer, epoch value, min validation loss \n",
-        "    return model, optimizer, checkpoint['epoch'], valid_loss_min.item()"
+        "    return model, optimizer, checkpoint['epoch'], valid_loss_min"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 34,
       "metadata": {
-        "id": "c4bp4NbFcrfA"
+        "id": "c4bp4NbFcrfA",
+        "gather": {
+          "logged": 1645559037073
+        }
       }
     },
     {
@@ -885,9 +925,12 @@
         "  return curr_ckp_path, best_ckp_path, exp_path"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 23,
       "metadata": {
-        "id": "Lm4OqAaoy58-"
+        "id": "Lm4OqAaoy58-",
+        "gather": {
+          "logged": 1645558696573
+        }
       }
     },
     {
@@ -903,28 +946,11 @@
     {
       "cell_type": "code",
       "source": [
+        "model_name = 'aubmindlab/bert-base-arabertv02'\r\n",
         "AraBert = AutoModel.from_pretrained(model_name)"
       ],
-      "outputs": [
-        {
-          "output_type": "display_data",
-          "data": {
-            "application/vnd.jupyter.widget-view+json": {
-              "model_id": "fa738d2f94ed4e83b28e2196f917171f",
-              "version_minor": 0,
-              "version_major": 2
-            },
-            "text/plain": "Downloading:   0%|          | 0.00/518M [00:00<?, ?B/s]"
-          },
-          "metadata": {}
-        },
-        {
-          "output_type": "stream",
-          "name": "stderr",
-          "text": "Some weights of the model checkpoint at aubmindlab/bert-base-arabertv02 were not used when initializing BertModel: ['cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.dense.weight', 'cls.predictions.decoder.bias', 'cls.seq_relationship.bias', 'cls.predictions.decoder.weight', 'cls.predictions.bias', 'cls.predictions.transform.LayerNorm.bias', 'cls.seq_relationship.weight']\n- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).\n- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).\n"
-        }
-      ],
-      "execution_count": null,
+      "outputs": [],
+      "execution_count": 24,
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/",
@@ -944,7 +970,10 @@
           ]
         },
         "id": "bJQz9rCZM1Eh",
-        "outputId": "dc8058f8-252b-443d-c000-0f8ed25a1df6"
+        "outputId": "dc8058f8-252b-443d-c000-0f8ed25a1df6",
+        "gather": {
+          "logged": 1645558732480
+        }
       }
     },
     {
@@ -965,9 +994,12 @@
         "    return start_span, end_span\n"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 25,
       "metadata": {
-        "id": "3ifcPJSKOKuo"
+        "id": "3ifcPJSKOKuo",
+        "gather": {
+          "logged": 1645558737370
+        }
       }
     },
     {
@@ -1026,18 +1058,21 @@
         "    return EM, F1, total_loss"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 26,
       "metadata": {
-        "id": "oimas_BC_Tai"
+        "id": "oimas_BC_Tai",
+        "gather": {
+          "logged": 1645558740256
+        }
       }
     },
     {
       "cell_type": "code",
       "source": [
-        "def train(model, num_epochs, criterion1, criterion2, optimizer,min_val_loss, train_loader, val_loader, log, exp_name):\n",
+        "def train(model,starat_epoch, num_epochs, criterion1, criterion2, optimizer,min_val_loss, train_loader, val_loader, log, exp_name):\n",
         "  curr_ckp_path, best_ckp_path, exp_path = order_exp('Runs/arabert_basev02_WA/train', exp_name)\n",
         "  model.train()\n",
-        "  for epoch in range(num_epochs):\n",
+        "  for epoch in range(start_epoch,num_epochs):\n",
         "    total_loss = 0.0\n",
         "    loop = tqdm(train_loader, leave=True)\n",
         "    for batch_idx, batch in enumerate(loop):\n",
@@ -1081,9 +1116,12 @@
         "  return model\n"
       ],
       "outputs": [],
-      "execution_count": null,
+      "execution_count": 37,
       "metadata": {
-        "id": "npcGLDUOAETl"
+        "id": "npcGLDUOAETl",
+        "gather": {
+          "logged": 1645559134711
+        }
       }
     },
     {
@@ -1101,20 +1139,23 @@
       "outputs": [
         {
           "output_type": "execute_result",
-          "execution_count": 34,
+          "execution_count": 37,
           "data": {
             "text/plain": "AraBertBase(\n  (base): BertModel(\n    (embeddings): BertEmbeddings(\n      (word_embeddings): Embedding(64000, 768, padding_idx=0)\n      (position_embeddings): Embedding(512, 768)\n      (token_type_embeddings): Embedding(2, 768)\n      (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n      (dropout): Dropout(p=0.1, inplace=False)\n    )\n    (encoder): BertEncoder(\n      (layer): ModuleList(\n        (0): BertLayer(\n          (attention): BertAttention(\n            (self): BertSelfAttention(\n              (query): Linear(in_features=768, out_features=768, bias=True)\n              (key): Linear(in_features=768, out_features=768, bias=True)\n              (value): Linear(in_features=768, out_features=768, bias=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n            (output): BertSelfOutput(\n              (dense): Linear(in_features=768, out_features=768, bias=True)\n              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n          )\n          (intermediate): BertIntermediate(\n            (dense): Linear(in_features=768, out_features=3072, bias=True)\n          )\n          (output): BertOutput(\n            (dense): Linear(in_features=3072, out_features=768, bias=True)\n            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n            (dropout): Dropout(p=0.1, inplace=False)\n          )\n        )\n        (1): BertLayer(\n          (attention): BertAttention(\n            (self): BertSelfAttention(\n              (query): Linear(in_features=768, out_features=768, bias=True)\n              (key): Linear(in_features=768, out_features=768, bias=True)\n              (value): Linear(in_features=768, out_features=768, bias=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n            (output): BertSelfOutput(\n              (dense): Linear(in_features=768, out_features=768, bias=True)\n              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n          )\n          (intermediate): BertIntermediate(\n            (dense): Linear(in_features=768, out_features=3072, bias=True)\n          )\n          (output): BertOutput(\n            (dense): Linear(in_features=3072, out_features=768, bias=True)\n            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n            (dropout): Dropout(p=0.1, inplace=False)\n          )\n        )\n        (2): BertLayer(\n          (attention): BertAttention(\n            (self): BertSelfAttention(\n              (query): Linear(in_features=768, out_features=768, bias=True)\n              (key): Linear(in_features=768, out_features=768, bias=True)\n              (value): Linear(in_features=768, out_features=768, bias=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n            (output): BertSelfOutput(\n              (dense): Linear(in_features=768, out_features=768, bias=True)\n              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n          )\n          (intermediate): BertIntermediate(\n            (dense): Linear(in_features=768, out_features=3072, bias=True)\n          )\n          (output): BertOutput(\n            (dense): Linear(in_features=3072, out_features=768, bias=True)\n            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n            (dropout): Dropout(p=0.1, inplace=False)\n          )\n        )\n        (3): BertLayer(\n          (attention): BertAttention(\n            (self): BertSelfAttention(\n              (query): Linear(in_features=768, out_features=768, bias=True)\n              (key): Linear(in_features=768, out_features=768, bias=True)\n              (value): Linear(in_features=768, out_features=768, bias=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n            (output): BertSelfOutput(\n              (dense): Linear(in_features=768, out_features=768, bias=True)\n              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n          )\n          (intermediate): BertIntermediate(\n            (dense): Linear(in_features=768, out_features=3072, bias=True)\n          )\n          (output): BertOutput(\n            (dense): Linear(in_features=3072, out_features=768, bias=True)\n            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n            (dropout): Dropout(p=0.1, inplace=False)\n          )\n        )\n        (4): BertLayer(\n          (attention): BertAttention(\n            (self): BertSelfAttention(\n              (query): Linear(in_features=768, out_features=768, bias=True)\n              (key): Linear(in_features=768, out_features=768, bias=True)\n              (value): Linear(in_features=768, out_features=768, bias=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n            (output): BertSelfOutput(\n              (dense): Linear(in_features=768, out_features=768, bias=True)\n              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n          )\n          (intermediate): BertIntermediate(\n            (dense): Linear(in_features=768, out_features=3072, bias=True)\n          )\n          (output): BertOutput(\n            (dense): Linear(in_features=3072, out_features=768, bias=True)\n            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n            (dropout): Dropout(p=0.1, inplace=False)\n          )\n        )\n        (5): BertLayer(\n          (attention): BertAttention(\n            (self): BertSelfAttention(\n              (query): Linear(in_features=768, out_features=768, bias=True)\n              (key): Linear(in_features=768, out_features=768, bias=True)\n              (value): Linear(in_features=768, out_features=768, bias=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n            (output): BertSelfOutput(\n              (dense): Linear(in_features=768, out_features=768, bias=True)\n              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n          )\n          (intermediate): BertIntermediate(\n            (dense): Linear(in_features=768, out_features=3072, bias=True)\n          )\n          (output): BertOutput(\n            (dense): Linear(in_features=3072, out_features=768, bias=True)\n            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n            (dropout): Dropout(p=0.1, inplace=False)\n          )\n        )\n        (6): BertLayer(\n          (attention): BertAttention(\n            (self): BertSelfAttention(\n              (query): Linear(in_features=768, out_features=768, bias=True)\n              (key): Linear(in_features=768, out_features=768, bias=True)\n              (value): Linear(in_features=768, out_features=768, bias=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n            (output): BertSelfOutput(\n              (dense): Linear(in_features=768, out_features=768, bias=True)\n              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n          )\n          (intermediate): BertIntermediate(\n            (dense): Linear(in_features=768, out_features=3072, bias=True)\n          )\n          (output): BertOutput(\n            (dense): Linear(in_features=3072, out_features=768, bias=True)\n            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n            (dropout): Dropout(p=0.1, inplace=False)\n          )\n        )\n        (7): BertLayer(\n          (attention): BertAttention(\n            (self): BertSelfAttention(\n              (query): Linear(in_features=768, out_features=768, bias=True)\n              (key): Linear(in_features=768, out_features=768, bias=True)\n              (value): Linear(in_features=768, out_features=768, bias=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n            (output): BertSelfOutput(\n              (dense): Linear(in_features=768, out_features=768, bias=True)\n              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n          )\n          (intermediate): BertIntermediate(\n            (dense): Linear(in_features=768, out_features=3072, bias=True)\n          )\n          (output): BertOutput(\n            (dense): Linear(in_features=3072, out_features=768, bias=True)\n            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n            (dropout): Dropout(p=0.1, inplace=False)\n          )\n        )\n        (8): BertLayer(\n          (attention): BertAttention(\n            (self): BertSelfAttention(\n              (query): Linear(in_features=768, out_features=768, bias=True)\n              (key): Linear(in_features=768, out_features=768, bias=True)\n              (value): Linear(in_features=768, out_features=768, bias=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n            (output): BertSelfOutput(\n              (dense): Linear(in_features=768, out_features=768, bias=True)\n              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n          )\n          (intermediate): BertIntermediate(\n            (dense): Linear(in_features=768, out_features=3072, bias=True)\n          )\n          (output): BertOutput(\n            (dense): Linear(in_features=3072, out_features=768, bias=True)\n            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n            (dropout): Dropout(p=0.1, inplace=False)\n          )\n        )\n        (9): BertLayer(\n          (attention): BertAttention(\n            (self): BertSelfAttention(\n              (query): Linear(in_features=768, out_features=768, bias=True)\n              (key): Linear(in_features=768, out_features=768, bias=True)\n              (value): Linear(in_features=768, out_features=768, bias=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n            (output): BertSelfOutput(\n              (dense): Linear(in_features=768, out_features=768, bias=True)\n              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n          )\n          (intermediate): BertIntermediate(\n            (dense): Linear(in_features=768, out_features=3072, bias=True)\n          )\n          (output): BertOutput(\n            (dense): Linear(in_features=3072, out_features=768, bias=True)\n            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n            (dropout): Dropout(p=0.1, inplace=False)\n          )\n        )\n        (10): BertLayer(\n          (attention): BertAttention(\n            (self): BertSelfAttention(\n              (query): Linear(in_features=768, out_features=768, bias=True)\n              (key): Linear(in_features=768, out_features=768, bias=True)\n              (value): Linear(in_features=768, out_features=768, bias=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n            (output): BertSelfOutput(\n              (dense): Linear(in_features=768, out_features=768, bias=True)\n              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n          )\n          (intermediate): BertIntermediate(\n            (dense): Linear(in_features=768, out_features=3072, bias=True)\n          )\n          (output): BertOutput(\n            (dense): Linear(in_features=3072, out_features=768, bias=True)\n            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n            (dropout): Dropout(p=0.1, inplace=False)\n          )\n        )\n        (11): BertLayer(\n          (attention): BertAttention(\n            (self): BertSelfAttention(\n              (query): Linear(in_features=768, out_features=768, bias=True)\n              (key): Linear(in_features=768, out_features=768, bias=True)\n              (value): Linear(in_features=768, out_features=768, bias=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n            (output): BertSelfOutput(\n              (dense): Linear(in_features=768, out_features=768, bias=True)\n              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n              (dropout): Dropout(p=0.1, inplace=False)\n            )\n          )\n          (intermediate): BertIntermediate(\n            (dense): Linear(in_features=768, out_features=3072, bias=True)\n          )\n          (output): BertOutput(\n            (dense): Linear(in_features=3072, out_features=768, bias=True)\n            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)\n            (dropout): Dropout(p=0.1, inplace=False)\n          )\n        )\n      )\n    )\n    (pooler): BertPooler(\n      (dense): Linear(in_features=768, out_features=768, bias=True)\n      (activation): Tanh()\n    )\n  )\n  (start): Linear(in_features=768, out_features=1, bias=True)\n  (end): Linear(in_features=768, out_features=1, bias=True)\n)"
           },
           "metadata": {}
         }
       ],
-      "execution_count": null,
+      "execution_count": 37,
       "metadata": {
         "id": "R1ilceKLPUzF",
         "colab": {
           "base_uri": "https://localhost:8080/"
         },
-        "outputId": "941463bc-6aa9-4a12-df12-ca4ad3ef7400"
+        "outputId": "941463bc-6aa9-4a12-df12-ca4ad3ef7400",
+        "gather": {
+          "logged": 1645553187328
+        }
       }
     },
     {
@@ -1126,60 +1167,15 @@
         {
           "output_type": "stream",
           "name": "stderr",
-          "text": "Epoch 0: 100%|██████████| 1575/1575 [39:32<00:00,  1.51s/it, loss=11.4]\n"
+          "text": "Epoch 0: 100%|██████████| 1579/1579 [41:01<00:00,  1.56s/it, loss=14.3]\nEpoch 1:  38%|███▊      | 598/1579 [15:30<25:35,  1.56s/it, loss=10.4]"
         },
         {
           "output_type": "stream",
           "name": "stdout",
-          "text": "Validation Results: EM:2.56, f1: 10.42, loss: 12.24\n"
-        },
-        {
-          "output_type": "stream",
-          "name": "stderr",
-          "text": "Epoch 1: 100%|██████████| 1575/1575 [39:33<00:00,  1.51s/it, loss=20]\n"
-        },
-        {
-          "output_type": "stream",
-          "name": "stdout",
-          "text": "Validation Results: EM:2.61, f1: 10.78, loss: 12.83\n"
-        },
-        {
-          "output_type": "stream",
-          "name": "stderr",
-          "text": "Epoch 2: 100%|██████████| 1575/1575 [39:31<00:00,  1.51s/it, loss=5.92]\n"
-        },
-        {
-          "output_type": "stream",
-          "name": "stdout",
-          "text": "Validation Results: EM:2.92, f1: 9.93, loss: 13.85\n"
-        },
-        {
-          "output_type": "stream",
-          "name": "stderr",
-          "text": "Epoch 3: 100%|██████████| 1575/1575 [39:32<00:00,  1.51s/it, loss=11.9]\n"
-        },
-        {
-          "output_type": "stream",
-          "name": "stdout",
-          "text": "Validation Results: EM:2.87, f1: 10.04, loss: 15.86\n"
-        },
-        {
-          "output_type": "stream",
-          "name": "stderr",
-          "text": "Epoch 4: 100%|██████████| 1575/1575 [39:31<00:00,  1.51s/it, loss=7.28]\n"
-        },
-        {
-          "output_type": "stream",
-          "name": "stdout",
-          "text": "Validation Results: EM:3.76, f1: 10.67, loss: 18.53\n"
-        },
-        {
-          "output_type": "stream",
-          "name": "stderr",
-          "text": "Epoch 5:  37%|███▋      | 585/1575 [14:42<24:47,  1.50s/it, loss=6.97]"
+          "text": "Validation Results: EM:3.37, f1: 10.87, loss: 12.30\n"
         }
       ],
-      "execution_count": null,
+      "execution_count": 38,
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/"
@@ -1189,12 +1185,168 @@
       }
     },
     {
+      "cell_type": "markdown",
+      "source": [
+        "## Second Try"
+      ],
+      "metadata": {
+        "nteract": {
+          "transient": {
+            "deleting": false
+          }
+        }
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ckp_path = 'Runs/arabert_basev02_WA/train/first/curr.pt'\r\n",
+        "model = AraBertBase(AraBert)\r\n",
+        "num_epochs = 30\r\n",
+        "learning_rate = 3e-5\r\n",
+        "criterion1 = nn.CrossEntropyLoss(reduction='none') \r\n",
+        "criterion2 = nn.CrossEntropyLoss(reduction='none')\r\n",
+        "device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')\r\n",
+        "model.to(device)\r\n",
+        "optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)\r\n",
+        "model, optimizer, start_epoch, valid_loss_min = load_ckp(ckp_path, model, optimizer)\r\n",
+        "\r\n"
+      ],
+      "outputs": [],
+      "execution_count": 42,
+      "metadata": {
+        "id": "YB2AjhIBGY8a",
+        "gather": {
+          "logged": 1645559499642
+        }
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "device"
+      ],
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "execution_count": 41,
+          "data": {
+            "text/plain": "device(type='cuda')"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 41,
+      "metadata": {
+        "jupyter": {
+          "source_hidden": false,
+          "outputs_hidden": false
+        },
+        "nteract": {
+          "transient": {
+            "deleting": false
+          }
+        },
+        "gather": {
+          "logged": 1645559311697
+        }
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "train_loader.batch_size"
+      ],
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "execution_count": 46,
+          "data": {
+            "text/plain": "6"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 46,
+      "metadata": {
+        "jupyter": {
+          "source_hidden": false,
+          "outputs_hidden": false
+        },
+        "nteract": {
+          "transient": {
+            "deleting": false
+          }
+        },
+        "gather": {
+          "logged": 1645559603613
+        }
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "model = train(model,start_epoch, num_epochs, criterion1, criterion2, optimizer, valid_loss_min, train_loader, val_loader, True,'first')"
+      ],
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": "\r  0%|          | 0/3158 [00:00<?, ?it/s]\r  0%|          | 0/3158 [00:00<?, ?it/s]\n"
+        },
+        {
+          "output_type": "error",
+          "ename": "RuntimeError",
+          "evalue": "CUDA out of memory. Tried to allocate 48.00 MiB (GPU 0; 11.17 GiB total capacity; 10.24 GiB already allocated; 896.00 KiB free; 10.70 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mRuntimeError\u001b[0m                              Traceback (most recent call last)",
+            "Input \u001b[0;32mIn [48]\u001b[0m, in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[0;32m----> 1\u001b[0m model \u001b[38;5;241m=\u001b[39m \u001b[43mtrain\u001b[49m\u001b[43m(\u001b[49m\u001b[43mmodel\u001b[49m\u001b[43m,\u001b[49m\u001b[43mstart_epoch\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mnum_epochs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mcriterion1\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mcriterion2\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43moptimizer\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mvalid_loss_min\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mtrain_loader\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mval_loader\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;28;43;01mTrue\u001b[39;49;00m\u001b[43m,\u001b[49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[38;5;124;43mfirst\u001b[39;49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[43m)\u001b[49m\n",
+            "Input \u001b[0;32mIn [37]\u001b[0m, in \u001b[0;36mtrain\u001b[0;34m(model, starat_epoch, num_epochs, criterion1, criterion2, optimizer, min_val_loss, train_loader, val_loader, log, exp_name)\u001b[0m\n\u001b[1;32m      9\u001b[0m masks \u001b[38;5;241m=\u001b[39m batch[\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mattention_mask\u001b[39m\u001b[38;5;124m'\u001b[39m]\u001b[38;5;241m.\u001b[39mto(device)\n\u001b[1;32m     10\u001b[0m tokens_type \u001b[38;5;241m=\u001b[39m batch[\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mtoken_type_ids\u001b[39m\u001b[38;5;124m'\u001b[39m]\u001b[38;5;241m.\u001b[39mto(device)\n\u001b[0;32m---> 11\u001b[0m start_span, end_span \u001b[38;5;241m=\u001b[39m \u001b[43mmodel\u001b[49m\u001b[43m(\u001b[49m\u001b[43mtokens\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mmasks\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mtokens_type\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m     12\u001b[0m gt_start \u001b[38;5;241m=\u001b[39m batch[\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mstart_positions\u001b[39m\u001b[38;5;124m'\u001b[39m]\u001b[38;5;241m.\u001b[39mto(device)\n\u001b[1;32m     13\u001b[0m gt_end \u001b[38;5;241m=\u001b[39m batch[\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mend_positions\u001b[39m\u001b[38;5;124m'\u001b[39m]\u001b[38;5;241m.\u001b[39mto(device)\n",
+            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.8/site-packages/torch/nn/modules/module.py:1102\u001b[0m, in \u001b[0;36mModule._call_impl\u001b[0;34m(self, *input, **kwargs)\u001b[0m\n\u001b[1;32m   1098\u001b[0m \u001b[38;5;66;03m# If we don't have any hooks, we want to skip the rest of the logic in\u001b[39;00m\n\u001b[1;32m   1099\u001b[0m \u001b[38;5;66;03m# this function, and just call forward.\u001b[39;00m\n\u001b[1;32m   1100\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m (\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_backward_hooks \u001b[38;5;129;01mor\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_forward_hooks \u001b[38;5;129;01mor\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_forward_pre_hooks \u001b[38;5;129;01mor\u001b[39;00m _global_backward_hooks\n\u001b[1;32m   1101\u001b[0m         \u001b[38;5;129;01mor\u001b[39;00m _global_forward_hooks \u001b[38;5;129;01mor\u001b[39;00m _global_forward_pre_hooks):\n\u001b[0;32m-> 1102\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mforward_call\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43minput\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m   1103\u001b[0m \u001b[38;5;66;03m# Do not call functions when jit is used\u001b[39;00m\n\u001b[1;32m   1104\u001b[0m full_backward_hooks, non_full_backward_hooks \u001b[38;5;241m=\u001b[39m [], []\n",
+            "Input \u001b[0;32mIn [25]\u001b[0m, in \u001b[0;36mAraBertBase.forward\u001b[0;34m(self, tokens, token_type, mask)\u001b[0m\n\u001b[1;32m      8\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mforward\u001b[39m(\u001b[38;5;28mself\u001b[39m, tokens, token_type, mask):\n\u001b[0;32m----> 9\u001b[0m   output \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mbase\u001b[49m\u001b[43m(\u001b[49m\u001b[43minput_ids\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43m \u001b[49m\u001b[43mtokens\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mattention_mask\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43m \u001b[49m\u001b[43mmask\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mtoken_type_ids\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43m \u001b[49m\u001b[43mtoken_type\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m     10\u001b[0m   bert_encoding \u001b[38;5;241m=\u001b[39m output\u001b[38;5;241m.\u001b[39mlast_hidden_state\n\u001b[1;32m     11\u001b[0m   start_span \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mstart(bert_encoding)\n",
+            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.8/site-packages/torch/nn/modules/module.py:1102\u001b[0m, in \u001b[0;36mModule._call_impl\u001b[0;34m(self, *input, **kwargs)\u001b[0m\n\u001b[1;32m   1098\u001b[0m \u001b[38;5;66;03m# If we don't have any hooks, we want to skip the rest of the logic in\u001b[39;00m\n\u001b[1;32m   1099\u001b[0m \u001b[38;5;66;03m# this function, and just call forward.\u001b[39;00m\n\u001b[1;32m   1100\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m (\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_backward_hooks \u001b[38;5;129;01mor\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_forward_hooks \u001b[38;5;129;01mor\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_forward_pre_hooks \u001b[38;5;129;01mor\u001b[39;00m _global_backward_hooks\n\u001b[1;32m   1101\u001b[0m         \u001b[38;5;129;01mor\u001b[39;00m _global_forward_hooks \u001b[38;5;129;01mor\u001b[39;00m _global_forward_pre_hooks):\n\u001b[0;32m-> 1102\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mforward_call\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43minput\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m   1103\u001b[0m \u001b[38;5;66;03m# Do not call functions when jit is used\u001b[39;00m\n\u001b[1;32m   1104\u001b[0m full_backward_hooks, non_full_backward_hooks \u001b[38;5;241m=\u001b[39m [], []\n",
+            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.8/site-packages/transformers/models/bert/modeling_bert.py:971\u001b[0m, in \u001b[0;36mBertModel.forward\u001b[0;34m(self, input_ids, attention_mask, token_type_ids, position_ids, head_mask, inputs_embeds, encoder_hidden_states, encoder_attention_mask, past_key_values, use_cache, output_attentions, output_hidden_states, return_dict)\u001b[0m\n\u001b[1;32m    962\u001b[0m head_mask \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mget_head_mask(head_mask, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mconfig\u001b[38;5;241m.\u001b[39mnum_hidden_layers)\n\u001b[1;32m    964\u001b[0m embedding_output \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39membeddings(\n\u001b[1;32m    965\u001b[0m     input_ids\u001b[38;5;241m=\u001b[39minput_ids,\n\u001b[1;32m    966\u001b[0m     position_ids\u001b[38;5;241m=\u001b[39mposition_ids,\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m    969\u001b[0m     past_key_values_length\u001b[38;5;241m=\u001b[39mpast_key_values_length,\n\u001b[1;32m    970\u001b[0m )\n\u001b[0;32m--> 971\u001b[0m encoder_outputs \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mencoder\u001b[49m\u001b[43m(\u001b[49m\n\u001b[1;32m    972\u001b[0m \u001b[43m    \u001b[49m\u001b[43membedding_output\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    973\u001b[0m \u001b[43m    \u001b[49m\u001b[43mattention_mask\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mextended_attention_mask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    974\u001b[0m \u001b[43m    \u001b[49m\u001b[43mhead_mask\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mhead_mask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    975\u001b[0m \u001b[43m    \u001b[49m\u001b[43mencoder_hidden_states\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mencoder_hidden_states\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    976\u001b[0m \u001b[43m    \u001b[49m\u001b[43mencoder_attention_mask\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mencoder_extended_attention_mask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    977\u001b[0m \u001b[43m    \u001b[49m\u001b[43mpast_key_values\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mpast_key_values\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    978\u001b[0m \u001b[43m    \u001b[49m\u001b[43muse_cache\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43muse_cache\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    979\u001b[0m \u001b[43m    \u001b[49m\u001b[43moutput_attentions\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43moutput_attentions\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    980\u001b[0m \u001b[43m    \u001b[49m\u001b[43moutput_hidden_states\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43moutput_hidden_states\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    981\u001b[0m \u001b[43m    \u001b[49m\u001b[43mreturn_dict\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mreturn_dict\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    982\u001b[0m \u001b[43m\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    983\u001b[0m sequence_output \u001b[38;5;241m=\u001b[39m encoder_outputs[\u001b[38;5;241m0\u001b[39m]\n\u001b[1;32m    984\u001b[0m pooled_output \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mpooler(sequence_output) \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mpooler \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m \u001b[38;5;28;01melse\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n",
+            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.8/site-packages/torch/nn/modules/module.py:1102\u001b[0m, in \u001b[0;36mModule._call_impl\u001b[0;34m(self, *input, **kwargs)\u001b[0m\n\u001b[1;32m   1098\u001b[0m \u001b[38;5;66;03m# If we don't have any hooks, we want to skip the rest of the logic in\u001b[39;00m\n\u001b[1;32m   1099\u001b[0m \u001b[38;5;66;03m# this function, and just call forward.\u001b[39;00m\n\u001b[1;32m   1100\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m (\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_backward_hooks \u001b[38;5;129;01mor\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_forward_hooks \u001b[38;5;129;01mor\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_forward_pre_hooks \u001b[38;5;129;01mor\u001b[39;00m _global_backward_hooks\n\u001b[1;32m   1101\u001b[0m         \u001b[38;5;129;01mor\u001b[39;00m _global_forward_hooks \u001b[38;5;129;01mor\u001b[39;00m _global_forward_pre_hooks):\n\u001b[0;32m-> 1102\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mforward_call\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43minput\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m   1103\u001b[0m \u001b[38;5;66;03m# Do not call functions when jit is used\u001b[39;00m\n\u001b[1;32m   1104\u001b[0m full_backward_hooks, non_full_backward_hooks \u001b[38;5;241m=\u001b[39m [], []\n",
+            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.8/site-packages/transformers/models/bert/modeling_bert.py:568\u001b[0m, in \u001b[0;36mBertEncoder.forward\u001b[0;34m(self, hidden_states, attention_mask, head_mask, encoder_hidden_states, encoder_attention_mask, past_key_values, use_cache, output_attentions, output_hidden_states, return_dict)\u001b[0m\n\u001b[1;32m    559\u001b[0m     layer_outputs \u001b[38;5;241m=\u001b[39m torch\u001b[38;5;241m.\u001b[39mutils\u001b[38;5;241m.\u001b[39mcheckpoint\u001b[38;5;241m.\u001b[39mcheckpoint(\n\u001b[1;32m    560\u001b[0m         create_custom_forward(layer_module),\n\u001b[1;32m    561\u001b[0m         hidden_states,\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m    565\u001b[0m         encoder_attention_mask,\n\u001b[1;32m    566\u001b[0m     )\n\u001b[1;32m    567\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[0;32m--> 568\u001b[0m     layer_outputs \u001b[38;5;241m=\u001b[39m \u001b[43mlayer_module\u001b[49m\u001b[43m(\u001b[49m\n\u001b[1;32m    569\u001b[0m \u001b[43m        \u001b[49m\u001b[43mhidden_states\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    570\u001b[0m \u001b[43m        \u001b[49m\u001b[43mattention_mask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    571\u001b[0m \u001b[43m        \u001b[49m\u001b[43mlayer_head_mask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    572\u001b[0m \u001b[43m        \u001b[49m\u001b[43mencoder_hidden_states\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    573\u001b[0m \u001b[43m        \u001b[49m\u001b[43mencoder_attention_mask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    574\u001b[0m \u001b[43m        \u001b[49m\u001b[43mpast_key_value\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    575\u001b[0m \u001b[43m        \u001b[49m\u001b[43moutput_attentions\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    576\u001b[0m \u001b[43m    \u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    578\u001b[0m hidden_states \u001b[38;5;241m=\u001b[39m layer_outputs[\u001b[38;5;241m0\u001b[39m]\n\u001b[1;32m    579\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m use_cache:\n",
+            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.8/site-packages/torch/nn/modules/module.py:1102\u001b[0m, in \u001b[0;36mModule._call_impl\u001b[0;34m(self, *input, **kwargs)\u001b[0m\n\u001b[1;32m   1098\u001b[0m \u001b[38;5;66;03m# If we don't have any hooks, we want to skip the rest of the logic in\u001b[39;00m\n\u001b[1;32m   1099\u001b[0m \u001b[38;5;66;03m# this function, and just call forward.\u001b[39;00m\n\u001b[1;32m   1100\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m (\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_backward_hooks \u001b[38;5;129;01mor\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_forward_hooks \u001b[38;5;129;01mor\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_forward_pre_hooks \u001b[38;5;129;01mor\u001b[39;00m _global_backward_hooks\n\u001b[1;32m   1101\u001b[0m         \u001b[38;5;129;01mor\u001b[39;00m _global_forward_hooks \u001b[38;5;129;01mor\u001b[39;00m _global_forward_pre_hooks):\n\u001b[0;32m-> 1102\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mforward_call\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43minput\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m   1103\u001b[0m \u001b[38;5;66;03m# Do not call functions when jit is used\u001b[39;00m\n\u001b[1;32m   1104\u001b[0m full_backward_hooks, non_full_backward_hooks \u001b[38;5;241m=\u001b[39m [], []\n",
+            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.8/site-packages/transformers/models/bert/modeling_bert.py:456\u001b[0m, in \u001b[0;36mBertLayer.forward\u001b[0;34m(self, hidden_states, attention_mask, head_mask, encoder_hidden_states, encoder_attention_mask, past_key_value, output_attentions)\u001b[0m\n\u001b[1;32m    444\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mforward\u001b[39m(\n\u001b[1;32m    445\u001b[0m     \u001b[38;5;28mself\u001b[39m,\n\u001b[1;32m    446\u001b[0m     hidden_states,\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m    453\u001b[0m ):\n\u001b[1;32m    454\u001b[0m     \u001b[38;5;66;03m# decoder uni-directional self-attention cached key/values tuple is at positions 1,2\u001b[39;00m\n\u001b[1;32m    455\u001b[0m     self_attn_past_key_value \u001b[38;5;241m=\u001b[39m past_key_value[:\u001b[38;5;241m2\u001b[39m] \u001b[38;5;28;01mif\u001b[39;00m past_key_value \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m \u001b[38;5;28;01melse\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[0;32m--> 456\u001b[0m     self_attention_outputs \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mattention\u001b[49m\u001b[43m(\u001b[49m\n\u001b[1;32m    457\u001b[0m \u001b[43m        \u001b[49m\u001b[43mhidden_states\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    458\u001b[0m \u001b[43m        \u001b[49m\u001b[43mattention_mask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    459\u001b[0m \u001b[43m        \u001b[49m\u001b[43mhead_mask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    460\u001b[0m \u001b[43m        \u001b[49m\u001b[43moutput_attentions\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43moutput_attentions\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    461\u001b[0m \u001b[43m        \u001b[49m\u001b[43mpast_key_value\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mself_attn_past_key_value\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    462\u001b[0m \u001b[43m    \u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    463\u001b[0m     attention_output \u001b[38;5;241m=\u001b[39m self_attention_outputs[\u001b[38;5;241m0\u001b[39m]\n\u001b[1;32m    465\u001b[0m     \u001b[38;5;66;03m# if decoder, the last output is tuple of self-attn cache\u001b[39;00m\n",
+            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.8/site-packages/torch/nn/modules/module.py:1102\u001b[0m, in \u001b[0;36mModule._call_impl\u001b[0;34m(self, *input, **kwargs)\u001b[0m\n\u001b[1;32m   1098\u001b[0m \u001b[38;5;66;03m# If we don't have any hooks, we want to skip the rest of the logic in\u001b[39;00m\n\u001b[1;32m   1099\u001b[0m \u001b[38;5;66;03m# this function, and just call forward.\u001b[39;00m\n\u001b[1;32m   1100\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m (\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_backward_hooks \u001b[38;5;129;01mor\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_forward_hooks \u001b[38;5;129;01mor\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_forward_pre_hooks \u001b[38;5;129;01mor\u001b[39;00m _global_backward_hooks\n\u001b[1;32m   1101\u001b[0m         \u001b[38;5;129;01mor\u001b[39;00m _global_forward_hooks \u001b[38;5;129;01mor\u001b[39;00m _global_forward_pre_hooks):\n\u001b[0;32m-> 1102\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mforward_call\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43minput\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m   1103\u001b[0m \u001b[38;5;66;03m# Do not call functions when jit is used\u001b[39;00m\n\u001b[1;32m   1104\u001b[0m full_backward_hooks, non_full_backward_hooks \u001b[38;5;241m=\u001b[39m [], []\n",
+            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.8/site-packages/transformers/models/bert/modeling_bert.py:387\u001b[0m, in \u001b[0;36mBertAttention.forward\u001b[0;34m(self, hidden_states, attention_mask, head_mask, encoder_hidden_states, encoder_attention_mask, past_key_value, output_attentions)\u001b[0m\n\u001b[1;32m    377\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mforward\u001b[39m(\n\u001b[1;32m    378\u001b[0m     \u001b[38;5;28mself\u001b[39m,\n\u001b[1;32m    379\u001b[0m     hidden_states,\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m    385\u001b[0m     output_attentions\u001b[38;5;241m=\u001b[39m\u001b[38;5;28;01mFalse\u001b[39;00m,\n\u001b[1;32m    386\u001b[0m ):\n\u001b[0;32m--> 387\u001b[0m     self_outputs \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mself\u001b[49m\u001b[43m(\u001b[49m\n\u001b[1;32m    388\u001b[0m \u001b[43m        \u001b[49m\u001b[43mhidden_states\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    389\u001b[0m \u001b[43m        \u001b[49m\u001b[43mattention_mask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    390\u001b[0m \u001b[43m        \u001b[49m\u001b[43mhead_mask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    391\u001b[0m \u001b[43m        \u001b[49m\u001b[43mencoder_hidden_states\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    392\u001b[0m \u001b[43m        \u001b[49m\u001b[43mencoder_attention_mask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    393\u001b[0m \u001b[43m        \u001b[49m\u001b[43mpast_key_value\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    394\u001b[0m \u001b[43m        \u001b[49m\u001b[43moutput_attentions\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    395\u001b[0m \u001b[43m    \u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    396\u001b[0m     attention_output \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39moutput(self_outputs[\u001b[38;5;241m0\u001b[39m], hidden_states)\n\u001b[1;32m    397\u001b[0m     outputs \u001b[38;5;241m=\u001b[39m (attention_output,) \u001b[38;5;241m+\u001b[39m self_outputs[\u001b[38;5;241m1\u001b[39m:]  \u001b[38;5;66;03m# add attentions if we output them\u001b[39;00m\n",
+            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.8/site-packages/torch/nn/modules/module.py:1102\u001b[0m, in \u001b[0;36mModule._call_impl\u001b[0;34m(self, *input, **kwargs)\u001b[0m\n\u001b[1;32m   1098\u001b[0m \u001b[38;5;66;03m# If we don't have any hooks, we want to skip the rest of the logic in\u001b[39;00m\n\u001b[1;32m   1099\u001b[0m \u001b[38;5;66;03m# this function, and just call forward.\u001b[39;00m\n\u001b[1;32m   1100\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m (\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_backward_hooks \u001b[38;5;129;01mor\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_forward_hooks \u001b[38;5;129;01mor\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_forward_pre_hooks \u001b[38;5;129;01mor\u001b[39;00m _global_backward_hooks\n\u001b[1;32m   1101\u001b[0m         \u001b[38;5;129;01mor\u001b[39;00m _global_forward_hooks \u001b[38;5;129;01mor\u001b[39;00m _global_forward_pre_hooks):\n\u001b[0;32m-> 1102\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mforward_call\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43minput\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m   1103\u001b[0m \u001b[38;5;66;03m# Do not call functions when jit is used\u001b[39;00m\n\u001b[1;32m   1104\u001b[0m full_backward_hooks, non_full_backward_hooks \u001b[38;5;241m=\u001b[39m [], []\n",
+            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.8/site-packages/transformers/models/bert/modeling_bert.py:309\u001b[0m, in \u001b[0;36mBertSelfAttention.forward\u001b[0;34m(self, hidden_states, attention_mask, head_mask, encoder_hidden_states, encoder_attention_mask, past_key_value, output_attentions)\u001b[0m\n\u001b[1;32m    306\u001b[0m         relative_position_scores_key \u001b[38;5;241m=\u001b[39m torch\u001b[38;5;241m.\u001b[39meinsum(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mbhrd,lrd->bhlr\u001b[39m\u001b[38;5;124m\"\u001b[39m, key_layer, positional_embedding)\n\u001b[1;32m    307\u001b[0m         attention_scores \u001b[38;5;241m=\u001b[39m attention_scores \u001b[38;5;241m+\u001b[39m relative_position_scores_query \u001b[38;5;241m+\u001b[39m relative_position_scores_key\n\u001b[0;32m--> 309\u001b[0m attention_scores \u001b[38;5;241m=\u001b[39m \u001b[43mattention_scores\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m/\u001b[39;49m\u001b[43m \u001b[49m\u001b[43mmath\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43msqrt\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mattention_head_size\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    310\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m attention_mask \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n\u001b[1;32m    311\u001b[0m     \u001b[38;5;66;03m# Apply the attention mask is (precomputed for all layers in BertModel forward() function)\u001b[39;00m\n\u001b[1;32m    312\u001b[0m     attention_scores \u001b[38;5;241m=\u001b[39m attention_scores \u001b[38;5;241m+\u001b[39m attention_mask\n",
+            "\u001b[0;31mRuntimeError\u001b[0m: CUDA out of memory. Tried to allocate 48.00 MiB (GPU 0; 11.17 GiB total capacity; 10.24 GiB already allocated; 896.00 KiB free; 10.70 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF"
+          ]
+        }
+      ],
+      "execution_count": 48,
+      "metadata": {
+        "jupyter": {
+          "source_hidden": false,
+          "outputs_hidden": false
+        },
+        "nteract": {
+          "transient": {
+            "deleting": false
+          }
+        }
+      }
+    },
+    {
       "cell_type": "code",
       "source": [],
       "outputs": [],
       "execution_count": null,
       "metadata": {
-        "id": "YB2AjhIBGY8a"
+        "jupyter": {
+          "source_hidden": false,
+          "outputs_hidden": false
+        },
+        "nteract": {
+          "transient": {
+            "deleting": false
+          }
+        }
       }
     }
   ],
@@ -3285,6 +3437,13 @@
     },
     "nteract": {
       "version": "nteract-front-end@1.0.0"
+    },
+    "microsoft": {
+      "host": {
+        "AzureML": {
+          "notebookHasBeenCompleted": true
+        }
+      }
     }
   },
   "nbformat": 4,
