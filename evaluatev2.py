@@ -15,7 +15,6 @@ import string
 import sys
 import csv 
 from Preprocess.arabertpreprocess import ArabertPreprocessor #Edits
-
 OPTS = None
 
 def parse_args():
@@ -275,7 +274,7 @@ def main():
     ##with open(OPTS.out_file, 'w') as f:
       ##json.dump(out_eval, f)
       ##Editing logging 
-    log_path = os.path.join(OPTS.out_file,'res.csv')
+    log_path = os.path.join(OPTS.out_file, 'res.csv')
     if not os.path.exists(log_path):
         with open(log_path,'w') as f:
             writer = csv.DictWriter(f, fieldnames=out_eval.keys())
