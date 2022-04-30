@@ -74,11 +74,11 @@ def dataframe2dict(df):
             key2_processed = arabert_prep.preprocess(key2)
             triplet_dict = {'context':key2_processed, 'qas':list()}
             for idx, row in new_df_2.iterrows():
-                qa_dict = {'question':arabert_prep.preprocess(row['question']), 'id':row['ID'], 'is_impossible':row['is_impossible']}
-                if row['is_impossible'] ==True:
+                qa_dict = {'question':arabert_prep.preprocess(row['question']), 'id':str(cnt), 'is_impossible':row['is_impossible']}
+                if row['is_impossible'] ==False:
                     qa_dict['answers'] = [{'text':arabert_prep.preprocess(row['answer']), 'answer_start':row['answer_start']}]
                 else:
-                    qa_dict['plausible_answers'] =[{'text':arabert_prep.preprocess(row['answer']), 'answer_start':row['answer_start']}]
+                    qa_dict['plausible_answers'] =[{'text':arabert_prep.preprocess(row['answer']), 'answer_start':0}]
                     qa_dict['answers']=list()
                 triplet_dict['qas'].append(qa_dict)
                 cnt = cnt+1
