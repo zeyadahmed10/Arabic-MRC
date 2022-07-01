@@ -1,0 +1,7 @@
+AQAAD
+train,https://drive.google.com/uc?id=1V5ziIZe__pGg14nH42WyMEFz444XPWf7
+validation,https://drive.google.com/uc?id=19nj9jiCdJlHwAfgUTJ_Z8jg1cB34yfjv
+test,https://drive.google.com/uc?id=1z0XksuTwnqhiX1guxkmjYmoNA_JZ6SUN
+ARCD
+train,https://raw.githubusercontent.com/husseinmozannar/SOQAL/master/data/arcd-train.json
+test,https://raw.githubusercontent.com/husseinmozannar/SOQAL/master/data/arcd-test.json
