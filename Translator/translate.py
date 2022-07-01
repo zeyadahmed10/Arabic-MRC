@@ -20,7 +20,7 @@ import requests, uuid, json, os, csv
 
 
 # Add your key and endpoint
-key = "f47b2561a1e54d9aaee352b8438e426a"
+key = ""
 endpoint = "https://api.cognitive.microsofttranslator.com"
 
 # Add your location, also known as region. The default is global.
