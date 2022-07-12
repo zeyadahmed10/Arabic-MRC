@@ -52,6 +52,8 @@ Introducing the new Arabic-SQuADV2.0 based on the popular SQuADv2.0 with unanswe
   Train | Validation | Test 
   ---|:---:|:---:
  76.8K | 9.6K | 9.6K
+ 
+ With 55% not-answered question and 45 answered for every split.
   ### Structure 
   Arabic-SQuADv2.0 have same structure as SQuADv2.0 for consistency
   ![Data Strucutre](dataset.png)
